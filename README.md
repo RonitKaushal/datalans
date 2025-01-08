@@ -1,5 +1,5 @@
 
-# 🎉 Social Media Performance Analyzer 📊
+# 🎉 DataLans - Transforming social media data into insights that shine 📊
 
 **Welcome to the *ultimate* tool for analyzing social media engagement!** 🚀 Built with ❤️ using **Next.js**, **LangFlow**, and **Astra DB**, this app will make your social media stats look *cooler than a TikTok influencer's dance moves*! 🕺💃
 
@@ -49,7 +49,7 @@
 
 1. Clone this bad boy:
    ```bash
-   git clone https://github.com/your-username/social-media-analyzer.git
+   git clone https://github.com/RonitKaushal/datalans.git
    ```
 2. Install all the nerdy stuff:
    ```bash
