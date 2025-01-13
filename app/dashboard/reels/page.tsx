@@ -1,6 +1,7 @@
 "use client";
 
-import { mockPosts, mockUsers } from "@/lib/mock-data";
+import { mockReelsPosts, mockUsers } from "@/lib/mock-data";
+import { NextSeo } from 'next-seo';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Play, Heart, MessageCircle, Share2 } from "lucide-react";
 
@@ -26,7 +27,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 export default function ReelsPage() {
-  const reels = mockPosts
+  const reels = mockReelsPosts
     .filter((post) => post.type === "reel")
     .map((reel) => ({
       ...reel,
@@ -69,10 +70,33 @@ export default function ReelsPage() {
     },
   ];
 
+  
+
   return (
+    <>
+          <NextSeo
+        title="Home - My Next.js App"
+        description="This is the homepage of my Next.js application."
+        canonical="https://www.example.com/"
+        openGraph={{
+          url: 'https://www.example.com/',
+          title: 'Home - My Next.js App',
+          description: 'This is the homepage of my Next.js application.',
+          images: [
+            {
+              url: '/path-to-your-image.jpg',
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+            },
+          ],
+        }}
+      />
     <div className="sm:p-8 p-2 flex flex-col ">
       {/* ///////////////////// */}
-      <h1 className="text-2xl font-bold mb-8 pl-[50px]">Posts Analytics</h1>
+      <h1 className="text-2xl sm:pl-[50px] pl-[60px] font-bold sm:my-0 sm:mb-5 my-6">
+        Reels Analytics
+      </h1>
 
       <Masonry
         breakpointCols={breakpointColumns}
@@ -87,9 +111,18 @@ export default function ReelsPage() {
               <Card key={reel.id} className="overflow-hidden mb-6 w-full">
                 <SheetTrigger>
                   <div className="relative w-full h-[auto]">
-                    <img
+                    {/* <img
                       src={reel.mediaUrl}
                       alt={reel.caption}
+                      className="relative inset-0 w-full h-full object-cover"
+                    /> */}
+                    <video
+                      src={reel.mediaUrl}
+                      
+                      loop
+                      muted
+                      playsInline
+                      style={{ width: '100%', height: 'auto' }}
                       className="relative inset-0 w-full h-full object-cover"
                     />
                   </div>
@@ -127,12 +160,21 @@ export default function ReelsPage() {
                 <SheetContent className="w-[320px] sm:w-[540px] overflow-scroll">
                   <SheetHeader>
                     <SheetTitle>Post Analysis</SheetTitle>
-                    <div className="relative w-full h-[300px] shadow-inner-2xl">
-                      <img
+                    <div className="relative w-full h-[auto] shadow-inner-2xl overflow-hidden">
+                      {/* <img
                         src={reel.mediaUrl}
                         alt={reel.caption}
                         className="relative inset-0 w-full h-full object-cover rounded-lg"
-                      />
+                      /> */}
+                                          <video
+                      src={reel.mediaUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      style={{ width: '100%', height: 'auto' }}
+                      className="relative border-2 inset-0 w-full h-full object-cover"
+                    />
                     </div>
                     <p className="relative text-base">{reel.caption}</p>
                   </SheetHeader>
@@ -172,5 +214,6 @@ export default function ReelsPage() {
         ))}
       </Masonry>
     </div>
+    </>
   );
 }

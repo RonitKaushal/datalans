@@ -1,6 +1,6 @@
 "use client";
 
-import { mockUsers, mockPosts, mockComments } from "@/lib/mock-data";
+import { mockUsers, mockImagePosts, mockcomments } from "@/lib/mock-data";
 import { analyzeCreatorStats } from "@/lib/analytics/creator";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -18,7 +18,7 @@ import { Likes } from "@/components/charts/likes";
 
 export function CreatorPageClient({ id }: { id: string }) {
   const user = mockUsers.find((u) => u.id === id);
-  const userPosts = mockPosts.filter((p) => p.userId === id);
+  const userPosts = mockImagePosts.filter((p) => p.userId === id);
   const stats = analyzeCreatorStats(userPosts);
   
   if (!user) return <div>Creator not found</div>;
@@ -26,24 +26,23 @@ export function CreatorPageClient({ id }: { id: string }) {
   return (
     <div className="p-8">
       {/* User Profile Header */}
-      <div className="relative w-full h-[250px] rounded-md overflow-hidden">
+      <div className="relative w-full sm:h-[250px] h-[120px] rounded-md overflow-hidden">
                     <img
                       src="/images/banner.png"
                       className="relative inset-0 w-full h-full object-cover"
                     />
                   </div>
-      <div className="flex items-center gap-6 mb-8 ml-2 mt-[-60px]">
-        <Avatar className="h-40 w-40">
+      <div className="flex items-center gap-6 mb-8 ml-2 sm:mt-[-60px] mt-[-80px]">
+        <Avatar className="h-24 w-24 sm:h-40 sm:w-40">
           <AvatarImage src={user.avatarUrl} alt={user.username} />
           <AvatarFallback>{user.username[0].toUpperCase()}</AvatarFallback>
         </Avatar>
-        <div className="mt-20">
-          <h1 className="text-3xl font-bold uppercase mb-3">{user.name}</h1>
-          <div className="flex items-center gap-4 text-muted-foreground">
-          <Badge>{user.username}</Badge>
+        <div className="sm:mt-20 mt-24">
+          <h1 className="sm:text-3xl text-2xl font-bold uppercase mb-3">{user.name}</h1>
+          <div className="flex items-center auto ml-[-60px] sm:ml-[0px] border-2 flex-wrap gap-4 text-muted-foreground">
+          <Badge className="hidden">{user.username}</Badge>
           <Badge>{user.followersCount.toLocaleString()} Followers</Badge>
           <Badge>{user.followingCount.toLocaleString()} Following</Badge>
-
           </div>
         </div>
       </div>
@@ -57,22 +56,16 @@ export function CreatorPageClient({ id }: { id: string }) {
         <Likes/>
       </div>
 
-      {/* Posts and Interactions */}
+
       <div className="mb-8">
         <CreatorPosts 
           posts={userPosts}
-          comments={mockComments}
+          comments={mockcomments}
           users={mockUsers}
         />
       </div>
 
-      {/* User Interaction History */}
-      {/* <UserInteractionHistory 
-        user={user}
-        allPosts={mockPosts}
-        allComments={mockComments}
-        allUsers={mockUsers}
-      /> */}
+
 
       {/* Analytics */}
 

@@ -1,7 +1,7 @@
 export interface Post {
   id: string;
   userId: string;
-  type: 'reel' | 'carousel' | 'image';
+  type: 'reel' | 'carousel' | 'image' | 'GIFs' | 'polls';
   caption?: string | 'hash';
   question?: string;
   option1?: string;

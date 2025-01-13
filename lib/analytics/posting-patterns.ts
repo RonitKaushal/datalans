@@ -18,7 +18,7 @@ export function analyzePostingPatterns(posts: Post[]): PostingPattern[] {
     const existing = hourlyStats.get(hour) || { count: 0, totalEngagement: 0 };
     hourlyStats.set(hour, {
       count: existing.count + 1,
-      totalEngagement: existing.engagement + engagement,
+      totalEngagement: existing.totalEngagement + engagement,
     });
   });
 

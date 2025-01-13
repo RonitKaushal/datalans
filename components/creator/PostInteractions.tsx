@@ -25,7 +25,7 @@ export function PostInteractions({ posts, comments, users }: PostInteractionsPro
             const user = users.find(u => u.id === comment.userId);
             const post = posts.find(p => p.id === comment.postId);
             
-            if (!user || !post) return null;
+            if (!user || !comment) return null;
 
             return (
               <Card key={comment.id} className="p-4">
@@ -43,7 +43,7 @@ export function PostInteractions({ posts, comments, users }: PostInteractionsPro
                     </div>
                     <p className="text-sm mt-1">{comment.content}</p>
                     <div className="mt-2 p-2 bg-muted/50 rounded-md">
-                      <p className="text-sm text-muted-foreground">On post: {post.caption}</p>
+                      <p className="text-sm text-muted-foreground">On post: {comment.content}</p>
                     </div>
                   </div>
                 </div>

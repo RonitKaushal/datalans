@@ -32,7 +32,7 @@ const mainNav = [
   },
   {
     title: "Polls",
-    href: "/dashboard/carousels",
+    href: "/dashboard/polls",
     icon: Layout,
   },
   {
@@ -54,10 +54,10 @@ export function Sidebar() {
   return (
     <div className="relative">
     <div className={`flex flex-col h-screen border-r bg-background overflow-hidden ${
-          isOpen ? "w-[auto]" : "w-[0px]"
+          isOpen ? "w-[330px] lg:w-[auto]" : "w-[0px]"
         }`}>
       <div className="p-6">
-<h1 className="fat-albert text-5xl">DataLans</h1>
+<h1 className="fat-albert text-5xl pr-2 m-[-10px]">DataLans</h1>
       </div>
       <ScrollArea className="flex-1 px-3">
         <div className="space-y-4">
@@ -119,12 +119,14 @@ export function Sidebar() {
       </div>
 
         <div className="absolute bottom-[0px] left-[0px] w-[100%] dark-mode-container flex justify-center items-center">
-        <ModeToggle/>
+        <ModeToggle />
       </div>
       </ScrollArea>
     </div>
-    <div className="toggle-sidebar z-50 absolute sm:right-[-70px] right-[-50px] sm:top-[28px] top-[4px]">
-      <Button className="bg-background shadow-[0_3px_10px_0_#000] text-foreground hover:bg-card text-xl w-[40px] h-[40px]" onClick={toggleSidebar}>
+    <div className={`toggle-sidebar z-50 absolute sm:top-[27px] ${
+          isOpen ? "sm:right-[-20px] right-[-20px] top-[25px]" : "sm:right-[-70px] right-[-60px] top-[30px]"
+        }`}>
+      <Button variant="outline" className="bg-background text-foreground hover:bg-card text-[30px] p-0 w-[35px] h-[35px]" onClick={toggleSidebar}>
       <PanelRight />
       </Button>
     </div>

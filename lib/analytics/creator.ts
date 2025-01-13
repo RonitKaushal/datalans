@@ -13,11 +13,11 @@ export interface CreatorStats {
     carousel: number;
     image: number;
   };
-  topHashtags: Array<{
-    tag: string;
-    count: number;
-    engagement: number;
-  }>;
+  // topHashtags: Array<{
+  //   tag: string;
+  //   count: number;
+  //   engagement: number;
+  // }>;
   postingTimes: Array<{
     hour: number;
     count: number;
@@ -43,19 +43,19 @@ export function analyzeCreatorStats(posts: Post[]): CreatorStats {
   };
 
   // Analyze hashtags
-  const hashtagStats = new Map();
-  posts.forEach(post => {
-    const hashtags = extractHashtags(post.caption);
-    const engagement = post.likes + post.comments + post.shares;
-    hashtags.forEach(tag => {
-      const existing = hashtagStats.get(tag) || { tag, count: 0, engagement: 0 };
-      hashtagStats.set(tag, {
-        tag,
-        count: existing.count + 1,
-        engagement: existing.engagement + engagement,
-      });
-    });
-  });
+  // const hashtagStats = new Map();
+  // posts.forEach(post => {
+  //   const hashtags = extractHashtags(post.caption);
+  //   const engagement = post.likes + post.comments + post.shares;
+  //   hashtags.forEach(tag => {
+  //     const existing = hashtagStats.get(tag) || { tag, count: 0, engagement: 0 };
+  //     hashtagStats.set(tag, {
+  //       tag,
+  //       count: existing.count + 1,
+  //       engagement: existing.engagement + engagement,
+  //     });
+  //   });
+  // });
 
   // Analyze posting times
   const timeStats = new Map();
@@ -84,9 +84,9 @@ export function analyzeCreatorStats(posts: Post[]): CreatorStats {
     totalShares,
     avgEngagementRate: (totalLikes + totalComments + totalShares) / totalPosts,
     postsByType,
-    topHashtags: Array.from(hashtagStats.values())
-      .sort((a, b) => b.engagement - a.engagement)
-      .slice(0, 10),
+    // topHashtags: Array.from(hashtagStats.values())
+      // .sort((a, b) => b.engagement - a.engagement)
+      // .slice(0, 10),
     postingTimes: Array.from(timeStats.entries())
       .map(([hour, stats]) => ({ hour, ...stats }))
       .sort((a, b) => a.hour - b.hour),

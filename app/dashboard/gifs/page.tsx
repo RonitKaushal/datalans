@@ -1,6 +1,6 @@
 "use client";
 
-import { mockPosts, mockUsers } from "@/lib/mock-data";
+import { mockGifsPosts, mockUsers } from "@/lib/mock-data";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, MessageCircle, Share2, Image as ImageIcon } from "lucide-react";
 import { format } from "date-fns";
@@ -30,8 +30,8 @@ import {
 } from "@/components/ui/sheet";
 
 export default function GifsPage() {
-  const posts = mockPosts
-    .filter((post) => post.type === "image")
+  const posts = mockGifsPosts
+    .filter((post) => post.type === "GIFs")
     .map((post) => ({
       ...post,
       user: mockUsers.find((u) => u.id === post.userId)!,
@@ -76,7 +76,7 @@ export default function GifsPage() {
   return (
     <div className="sm:p-8 p-2 flex flex-col ">
       {/* ///////////////////// */}
-      <h1 className="text-2xl font-bold mb-8 pl-[50px]">Posts Analytics</h1>
+      <h1 className="text-2xl sm:pl-[50px] pl-[60px] font-bold sm:my-0 sm:mb-5 my-6">GIFs Analytics</h1>
 
       <Masonry
         breakpointCols={breakpointColumns}

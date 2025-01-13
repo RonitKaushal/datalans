@@ -1,6 +1,6 @@
 "use client";
 
-import { mockPosts, mockUsers } from "@/lib/mock-data";
+import { mockImagePosts, mockUsers } from "@/lib/mock-data";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, MessageCircle, Share2, Image as ImageIcon } from "lucide-react";
 import { format } from "date-fns";
@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/sheet";
 
 export default function PostsPage() {
-  const posts = mockPosts
+  const posts = mockImagePosts
     .filter((post) => post.type === "image")
     .map((post) => ({
       ...post,
@@ -76,7 +76,7 @@ export default function PostsPage() {
   return (
     <div className="sm:p-8 p-2 flex flex-col ">
       {/* ///////////////////// */}
-      <h1 className="text-2xl font-bold mb-8 pl-[50px]">Posts Analytics</h1>
+      <h1 className="text-2xl sm:pl-[50px] pl-[60px] font-bold sm:my-0 sm:mb-5 my-6">Image Analytics</h1>
 
       <Masonry
         breakpointCols={breakpointColumns}
